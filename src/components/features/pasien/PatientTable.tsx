@@ -1,22 +1,12 @@
-/**
- * src/components/features/pasien/PatientTable.tsx
- *
- * Role: Patient list table with search, sort, pagination, error, and
- * empty/loading states. Composes DataTable + Pagination + search input.
- *
- * Design Decision: All complex state logic is delegated to usePatientListState.
- * This component is purely a rendering orchestrator — no business logic in JSX.
- */
-
-import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Search, RefreshCw, UserPlus } from 'lucide-react';
-import { DataTable } from '@/components/ui/DataTable';
-import { Pagination } from '@/components/ui/Pagination';
-import { usePatientColumns } from '@/components/features/pasien/PatientColumns';
-import { usePatientListState } from '@/hooks/usePatientListState';
-import type { Patient } from '@/types';
-import { cn } from '@/lib/utils';
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import { Search, RefreshCw, UserPlus } from "lucide-react";
+import { DataTable } from "@/components/ui/DataTable";
+import { Pagination } from "@/components/ui/Pagination";
+import { usePatientColumns } from "@/components/features/pasien/PatientColumns";
+import { usePatientListState } from "@/hooks/usePatientListState";
+import type { Patient } from "@/types";
+import { cn } from "@/lib/utils";
 
 interface PatientTableProps {
   patients: Patient[];
@@ -25,7 +15,12 @@ interface PatientTableProps {
   onRetry: () => void;
 }
 
-export function PatientTable({ patients, isLoading, error, onRetry }: PatientTableProps) {
+export function PatientTable({
+  patients,
+  isLoading,
+  error,
+  onRetry,
+}: PatientTableProps) {
   const navigate = useNavigate();
   const columns = usePatientColumns();
 
@@ -42,7 +37,7 @@ export function PatientTable({ patients, isLoading, error, onRetry }: PatientTab
   } = usePatientListState(patients);
 
   const handleAddPatient = useCallback(() => {
-    void navigate('/pasien/masuk');
+    void navigate("/pasien/masuk");
   }, [navigate]);
 
   // ── Error State ────────────────────────────────────────────────────────────
@@ -81,8 +76,8 @@ export function PatientTable({ patients, isLoading, error, onRetry }: PatientTab
             placeholder="Cari nama atau NIK..."
             aria-label="Cari pasien berdasarkan nama atau NIK"
             className={cn(
-              'w-full rounded-lg border border-slate-200 bg-white py-2 pl-10 pr-4 text-sm text-slate-900 placeholder:text-slate-400',
-              'focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all'
+              "w-full rounded-lg border border-slate-200 bg-white py-2 pl-10 pr-4 text-sm text-slate-900 placeholder:text-slate-400",
+              "focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all",
             )}
           />
         </div>
@@ -113,14 +108,12 @@ export function PatientTable({ patients, isLoading, error, onRetry }: PatientTab
         getRowKey={(p) => p.id}
         skeletonRows={5}
         emptyTitle={
-          searchQuery
-            ? 'Pasien tidak ditemukan'
-            : 'Belum ada pasien terdaftar'
+          searchQuery ? "Pasien tidak ditemukan" : "Belum ada pasien terdaftar"
         }
         emptyDescription={
           searchQuery
             ? `Tidak ada hasil untuk "${searchQuery}". Coba kata kunci lain.`
-            : 'Daftarkan pasien baru untuk memulai pencatatan rawat inap.'
+            : "Daftarkan pasien baru untuk memulai pencatatan rawat inap."
         }
         emptyAction={
           !searchQuery ? (

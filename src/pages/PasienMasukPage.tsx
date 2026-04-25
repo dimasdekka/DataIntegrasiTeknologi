@@ -1,14 +1,6 @@
-/**
- * src/pages/PasienMasukPage.tsx
- *
- * Role: Admission Form page — /pasien/masuk.
- * Wraps PatientForm in a styled card with page-level title/description.
- * Uses PageTransition for route animation.
- */
-
-import { PageTransition } from '@/components/ui/PageTransition';
-import { PatientForm } from '@/components/features/pasien/PatientForm';
-import { UserPlus } from 'lucide-react';
+import { PageTransition } from "@/components/ui/PageTransition";
+import { PatientForm } from "@/components/features/pasien/PatientForm";
+import { UserPlus } from "lucide-react";
 
 export function PasienMasukPage() {
   return (
@@ -21,7 +13,9 @@ export function PasienMasukPage() {
               <UserPlus className="h-5 w-5 text-white" aria-hidden="true" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-slate-900">Pendaftaran Pasien Baru</h1>
+              <h1 className="text-xl font-bold text-slate-900">
+                Pendaftaran Pasien Baru
+              </h1>
               <p className="text-sm text-slate-500">
                 Lengkapi formulir di bawah untuk mendaftarkan pasien rawat inap
               </p>
@@ -37,7 +31,8 @@ export function PasienMasukPage() {
               Data Pasien
             </h2>
             <p className="mt-0.5 text-xs text-slate-400">
-              Semua kolom bertanda <span className="text-rose-500 font-medium">*</span> wajib diisi
+              Semua kolom bertanda{" "}
+              <span className="text-rose-500 font-medium">*</span> wajib diisi
             </p>
           </div>
 

@@ -1,21 +1,10 @@
-/**
- * src/components/features/pasien/PatientColumns.tsx
- *
- * Role: Column definitions for the Patient DataTable.
- * Extracted to keep PatientTable focused on layout concerns only.
- *
- * Design Decision: usePatientColumns returns columns as a memoized array
- * (via useMemo) so reference equality is maintained between renders,
- * preventing unnecessary DataTable re-renders.
- */
-
-import { memo, useState, useCallback, useMemo } from 'react';
-import { Eye } from 'lucide-react';
-import type { Patient } from '@/types';
-import type { TableColumn } from '@/components/ui/DataTable';
-import { Badge } from '@/components/ui/Badge';
-import { PatientDetailModal } from '@/components/features/pasien/PatientDetailModal';
-import { formatDate } from '@/lib/utils';
+import { memo, useState, useCallback, useMemo } from "react";
+import { Eye } from "lucide-react";
+import type { Patient } from "@/types";
+import type { TableColumn } from "@/components/ui/DataTable";
+import { Badge } from "@/components/ui/Badge";
+import { PatientDetailModal } from "@/components/features/pasien/PatientDetailModal";
+import { formatDate } from "@/lib/utils";
 
 // ─── Action Cell ──────────────────────────────────────────────────────────────
 
@@ -48,7 +37,7 @@ const ActionCell = memo(({ patient }: ActionCellProps) => {
     </>
   );
 });
-ActionCell.displayName = 'ActionCell';
+ActionCell.displayName = "ActionCell";
 
 // ─── Columns Hook ─────────────────────────────────────────────────────────────
 
@@ -56,16 +45,16 @@ export function usePatientColumns(): TableColumn<Patient>[] {
   return useMemo<TableColumn<Patient>[]>(
     () => [
       {
-        key: 'namaPasien',
-        header: 'Nama Pasien',
+        key: "namaPasien",
+        header: "Nama Pasien",
         sortable: true,
-        className: 'min-w-[140px] font-medium text-slate-900',
+        className: "min-w-[140px] font-medium text-slate-900",
         render: (row) => <span className="font-medium">{row.namaPasien}</span>,
       },
       {
-        key: 'nik',
-        header: 'NIK',
-        className: 'min-w-[140px] font-mono text-xs',
+        key: "nik",
+        header: "NIK",
+        className: "min-w-[140px] font-mono text-xs",
         render: (row) => (
           <span className="font-mono text-xs tracking-wider text-slate-600">
             {row.nik}
@@ -73,9 +62,9 @@ export function usePatientColumns(): TableColumn<Patient>[] {
         ),
       },
       {
-        key: 'diagnosa',
-        header: 'Diagnosa',
-        className: 'min-w-[200px] max-w-[280px]',
+        key: "diagnosa",
+        header: "Diagnosa",
+        className: "min-w-[200px] max-w-[280px]",
         render: (row) => (
           <span
             className="block truncate max-w-[260px] text-slate-600"
@@ -86,10 +75,10 @@ export function usePatientColumns(): TableColumn<Patient>[] {
         ),
       },
       {
-        key: 'tanggalMasuk',
-        header: 'Tgl. Masuk',
+        key: "tanggalMasuk",
+        header: "Tgl. Masuk",
         sortable: true,
-        className: 'min-w-[120px] whitespace-nowrap',
+        className: "min-w-[120px] whitespace-nowrap",
         render: (row) => (
           <span className="text-slate-600 whitespace-nowrap">
             {formatDate(row.tanggalMasuk)}
@@ -97,17 +86,17 @@ export function usePatientColumns(): TableColumn<Patient>[] {
         ),
       },
       {
-        key: 'dokterNama',
-        header: 'Dokter',
-        className: 'min-w-[160px]',
+        key: "dokterNama",
+        header: "Dokter",
+        className: "min-w-[160px]",
         render: (row) => (
           <span className="text-slate-600">{row.dokterNama}</span>
         ),
       },
       {
-        key: 'ruanganNama',
-        header: 'Ruangan',
-        className: 'min-w-[120px]',
+        key: "ruanganNama",
+        header: "Ruangan",
+        className: "min-w-[120px]",
         render: (row) => (
           <div className="flex flex-col gap-1">
             <span className="text-slate-700 text-xs">{row.ruanganNama}</span>
@@ -116,12 +105,12 @@ export function usePatientColumns(): TableColumn<Patient>[] {
         ),
       },
       {
-        key: 'id',
-        header: 'Aksi',
-        className: 'min-w-[80px]',
+        key: "id",
+        header: "Aksi",
+        className: "min-w-[80px]",
         render: (row) => <ActionCell patient={row} />,
       },
     ],
-    []
+    [],
   );
 }

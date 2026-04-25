@@ -1,11 +1,3 @@
-/* =============================================================
- * src/index.css
- * 
- * Role: Global stylesheet using Tailwind CSS v4 directives.
- * Uses a custom design system with CSS custom properties for
- * consistent theming across the healthcare application.
- * ============================================================= */
-
 @import "tailwindcss";
 
 @theme {
@@ -59,7 +51,9 @@
 }
 
 @layer base {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
   }
 
@@ -91,8 +85,12 @@
   }
 
   @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
   }
 
   .scrollbar-thin {

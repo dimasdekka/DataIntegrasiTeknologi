@@ -1,16 +1,5 @@
-/**
- * src/components/ErrorBoundary.tsx
- *
- * Role: Class-based React Error Boundary at the router level.
- * Catches runtime errors from any child component tree and displays
- * a user-friendly error screen with a reload option.
- *
- * Design Decision: Must be class-based — React hooks cannot implement
- * componentDidCatch / getDerivedStateFromError lifecycle methods.
- */
-
-import { Component, type ReactNode, type ErrorInfo } from 'react';
-import { AlertTriangle } from 'lucide-react';
+import { Component, type ReactNode, type ErrorInfo } from "react";
+import { AlertTriangle } from "lucide-react";
 
 interface Props {
   children: ReactNode;
@@ -24,19 +13,18 @@ interface State {
 export class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { hasError: false, errorMessage: '' };
+    this.state = { hasError: false, errorMessage: "" };
   }
 
   static getDerivedStateFromError(error: Error): State {
     return {
       hasError: true,
-      errorMessage: error.message || 'Terjadi kesalahan yang tidak diketahui',
+      errorMessage: error.message || "Terjadi kesalahan yang tidak diketahui",
     };
   }
 
   componentDidCatch(error: Error, info: ErrorInfo): void {
-    // In production, this would be sent to an error tracking service
-    console.error('[ErrorBoundary]', error, info.componentStack);
+    console.error("[ErrorBoundary]", error, info.componentStack);
   }
 
   handleReload = (): void => {
@@ -49,7 +37,10 @@ export class ErrorBoundary extends Component<Props, State> {
         <div className="min-h-screen flex items-center justify-center bg-slate-50 p-6">
           <div className="max-w-md w-full rounded-2xl border border-slate-200 bg-white p-8 shadow-sm text-center">
             <div className="flex h-14 w-14 mx-auto items-center justify-center rounded-full bg-rose-100 mb-4">
-              <AlertTriangle className="h-7 w-7 text-rose-600" aria-hidden="true" />
+              <AlertTriangle
+                className="h-7 w-7 text-rose-600"
+                aria-hidden="true"
+              />
             </div>
             <h1 className="text-lg font-bold text-slate-900 mb-2">
               Oops! Terjadi Kesalahan
