@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { Search, RefreshCw, UserPlus } from "lucide-react";
 import { DataTable } from "@/components/ui/DataTable";
 import { Pagination } from "@/components/ui/Pagination";
@@ -29,7 +29,6 @@ export function PatientTable({
     setSearchQuery,
     sortConfig,
     handleSort,
-    currentPage,
     setCurrentPage,
     paginatedPatients,
     filteredCount,

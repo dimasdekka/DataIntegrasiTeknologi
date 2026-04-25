@@ -10,7 +10,7 @@
  * class injection. Breadcrumb maps pathname to human-readable labels.
  */
 
-import { Outlet, NavLink, useLocation } from 'react-router-dom';
+import { Outlet, NavLink, useLocation } from 'react-router';
 import { Activity, ClipboardList, UserPlus, ChevronRight, Home } from 'lucide-react';
 import { cn } from '@/lib/utils';
 

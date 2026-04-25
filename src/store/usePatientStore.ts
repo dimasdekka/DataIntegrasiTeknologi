@@ -1,24 +1,9 @@
-/**
- * src/store/usePatientStore.ts
- *
- * Role: Zustand store — single source of truth for Patient data.
- * Responsible for: fetching (mock), adding, and tracking loading/error state.
- *
- * Design Decision:
- * - Zustand v5 uses `create` without the middleware wrapper pattern.
- * - Only persistable/shared state lives here; UI state (search, sort,
- *   pagination) lives in the usePatientListState hook.
- * - Derived/filtered lists are NOT stored; computed with useMemo in hooks.
- * - fetchPatients simulates 500ms network latency before seeding mock data.
- * - addPatient simulates 700ms save latency before appending to state.
- */
-
-import { create } from 'zustand';
-import type { Patient, PatientFormValues } from '@/types';
-import { MOCK_PATIENTS } from '@/lib/mockData';
-import { DOCTORS } from '@/constants/doctors';
-import { ROOMS } from '@/constants/rooms';
-import { generateId } from '@/lib/utils';
+import { create } from "zustand";
+import type { Patient, PatientFormValues } from "@/types";
+import { MOCK_PATIENTS } from "@/lib/mockData";
+import { DOCTORS } from "@/constants/doctors";
+import { ROOMS } from "@/constants/rooms";
+import { generateId } from "@/lib/utils";
 
 interface PatientStore {
   patients: Patient[];
@@ -46,7 +31,7 @@ export const usePatientStore = create<PatientStore>((set) => ({
     } catch {
       set({
         isLoading: false,
-        error: 'Gagal memuat data pasien. Silakan coba lagi.',
+        error: "Gagal memuat data pasien. Silakan coba lagi.",
       });
     }
   },
@@ -61,7 +46,7 @@ export const usePatientStore = create<PatientStore>((set) => ({
       const room = ROOMS.find((r) => r.id === data.ruangan);
 
       if (!doctor || !room) {
-        throw new Error('Dokter atau ruangan tidak ditemukan');
+        throw new Error("Dokter atau ruangan tidak ditemukan");
       }
 
       const newPatient: Patient = {
@@ -84,9 +69,9 @@ export const usePatientStore = create<PatientStore>((set) => ({
       }));
     } catch (err: unknown) {
       const message =
-        err instanceof Error ? err.message : 'Gagal menyimpan data pasien';
+        err instanceof Error ? err.message : "Gagal menyimpan data pasien";
       set({ isLoading: false, error: message });
-      throw err; // Re-throw so the form handler can catch and show error toast
+      throw err;
     }
   },
 }));
